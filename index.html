@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="select">
+    <label>コードの頭文字
+      <select v-model="alphabet" @change="showCode">
+        <option value="" selected disabled></option>
+        <option value="a">a</option>
+        <option value="b">b</option>
+        <option value="c">c</option>
+        <option value="d">d</option>
+        <option value="e">e</option>
+        <option value="f">f</option>
+        <option value="g">g</option>
+        <option value="h">h</option>
+        <option value="i">i</option>
+        <option value="j">j</option>
+        <option value="k">k</option>
+        <option value="l">l</option>
+        <option value="m">m</option>
+        <option value="n">n</option>
+        <option value="o">o</option>
+        <option value="p">p</option>
+        <option value="q">q</option>
+        <option value="r">r</option>
+        <option value="s">s</option>
+        <option value="t">t</option>
+        <option value="u">u</option>
+        <option value="v">v</option>
+        <option value="w">w</option>
+        <option value="x">x</option>
+        <option value="y">y</option>
+        <option value="z">z</option>
+      </select>
+    </label>
+    <label class="lang">言語の種類
+      <input @change="lang" v-model="langHtml" type="radio" name="lang" value="html" id="radio1"><label for="radio1" class="langLabel">HTML</label>
+      <input @change="lang" v-model="langCss" type="radio" name="lang" value="css" id="radio2"><label for="radio2" class="langLabel">CSS</label>
+      <input @change="lang" v-model="langJs" type="radio" name="lang" value="js" id="radio3"><label for="radio3" class="langLabel">JavaScript</label>
+    </label>
+  </div>
+
+  <div class="text">
+    <dl v-if="showA" v-show="html">
+      <dt>a要素　&lt;a href = "飛ばしたいURL"&gt;テキスト&lt;/a&gt;</dt>
+      <dd>テキストをクリックすることで、指定したURLのページに飛ぶことができる。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showA" v-show="js">
+      <dt>alertメソッド　window.alert('テキスト');</dt>
+      <dd>画面上部から警告ウィンドウを出すことができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showA" v-show="js">
+      <dt>appendChildメソッド　親要素.appendChild(作成した要素);</dt>
+      <dd>親要素の下に作成した要素を追加できる。親要素にbodyを指定したいときは「document.body」とする。<br>
+      親要素内において、()内の要素がHTMLにある場合、親要素の1番最後に移動させることもできる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showB" v-show="css">
+      <dt>background-color: 色の指定;</dt>
+      <dd>ページの背景色を指定できる。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+    <dl v-if="showB" v-show="css">
+      <dt>background-image　background-image: url(使いたい画像のURLorパス)</dt>
+      <dd>背景画像を指定できる。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+    <dl v-if="showB" v-show="css">
+      <dt>background-position　background-position: 位置;</dt>
+      <dd>背景画像の位置を指定できる。「center center」とすると、ウィンドウの中央に配置できる。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+    <dl v-if="showB" v-show="css">
+      <dt>background-repeat　background-repeat: repeatするかしないか</dt>
+      <dd>背景画像を繰り返し表示するか、繰り返さないようにするか指定できる。繰り返さない場合は「no-repeat」とする。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+    <dl v-if="showB" v-show="css">
+      <dt>background-size　background-size: 数値など;</dt>
+      <dd>背景画像のサイズを指定できる。数値以外にも、例えば「cover」とすることで、横いっぱいに広げることができる。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+    <dl v-if="showB" v-show="html">
+      <dt>body要素　&lt;body&gt;その他のhtmlコード&lt;/body&gt;</dt>
+      <dd>HTMLのページ全体。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showB" v-show="js">
+      <dt>break文　break ;</dt>
+      <dd>if文内で使用する。1番内側のfor文を抜け出すことができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showC" v-show="js">
+      <dt>childNodesプロパティ　親要素.childNodes;</dt>
+      <dd>指定した親要素の子要素を配列(NodeList)として表示する。配列内に出る「text」は、改行を意味する。タグの終了(&lt;/&gt;)も数える。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showC" v-show="css">
+      <dt>color: 色の指定;</dt>
+      <dd>文字の色を指定するときに使う。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+    <dl v-if="showC" v-show="js">
+      <dt>console　console.log('テキスト');</dt>
+      <dd>コンソールにテキストを表示させる。F12キー→コンソール</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showC" v-show="js">
+      <dt>const　const 定数名 = 値orテキスト</dt>
+      <dd>定数に値orテキストを指定することができる。一度値orテキストを入れたら、変更はできない。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showC" v-show="js">
+      <dt>continue文　continue ;</dt>
+      <dd>if文内で使用する。周回の処理だけを途中で止める(抜け出さない)</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showC" v-show="js">
+      <dt>createElementメソッド　document.createElement('要素名');</dt>
+      <dd>定数に指定した要素を作成できる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showD" v-show="html">
+      <dt>dd要素　&lt;dd&gt;テキスト&lt;/dd&gt;</dt>
+      <dd>dt要素と共に使う。用語に対する説明文をつける要素。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showD" v-show="html">
+      <dt>div要素　&lt;div&gt;要素orテキスト&lt;/div&gt;</dt>
+      <dd>複数の要素をひとまとまりにできる要素。テキストのみでの活用もでき、有能要素。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showD" v-show="html">
+      <dt>dl要素　&lt;dl&gt;dt要素、dd要素&lt;/dl&gt;</dt>
+      <dd>用語(dt要素)と説明文(dd要素)をひとまとまりにする要素。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showD" v-show="html">
+      <dt>dt要素　&lt;dt&gt;テキスト&lt;/dt&gt;</dt>
+      <dd>dd要素と共に使う。用語と説明文をつける際に、dt要素は用語部分を担う。説明文はdd要素。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+
+    <dl v-if="showE" v-show="js">
+      <dt>else-if文　else if (条件式) {条件を満たしたときに実行されるコード};</dt>
+      <dd>if文の後ろに付け足すことで、if文の条件式に当てはまらず、else if文の条件式に当てはまる場合の処理を行うことができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showF" v-show="js">
+      <dt>filterメソッド　配列.filter((el) => 条件式)</dt>
+      <dd>配列内の要素をelとし、条件式に当てはまるもののみを抽出する。ラムダ式メソッドの一部。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showF" v-show="js">
+      <dt>firstElementChildプロパティ　要素.firstElementChild;</dt>
+      <dd>指定した要素の最初の子要素を、HTMLから取得することができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showF" v-show="js">
+      <dt>for文　for (初期化式; 繰り返し条件式; 更新式) {繰り返す処理};</dt>
+      <dd>初期化式から始まり、繰り返す条件式に当てはまるまで、更新式を繰り返し、{}内の処理を行う。<br>
+      例えば・・・<br>
+      for (let i = 0; i < 5; i += 1) {<br>
+      　　console.log('Hello World!!');<br>
+      }<br>
+      とした場合、変数iが0から始まり、iが5より下(4)まで、iに1を追加していく。つまり「0, 1, 2, 3, 4」の5回、コンソールにHello World!!を表示させる。<br>
+      また、入れ子(ネスト)も可能である。入れ子(ネスト)→for文の中にfor文を書くこと。<br>
+      for文の中にif文を入れることも可能。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showF" v-show="js">
+      <dt>for-in文　for (const プロパティ名 in オブジェクト) {繰り返す処理}</dt>
+      <dd>反復可能ではないオブジェクトのための繰り返し構文。オブジェクトが使われている配列に対してfor文を使うと、エラーが起きる(エラーメッセージ→○○ is not iterable＝反復可能ではない)</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showF" v-show="js">
+      <dt>for-of文　for (const 定数名 of [値orテキスト1, 値orテキスト2, ・・・]) {繰り返す処理}</dt>
+      <dd>[]内の値orテキストを1つずつ順番に、定数に代入する。規則性のないリストを[]内に作成して活用する。規則性がある場合、for文でよい。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showF" v-show="js">
+      <dt>forEachメソッド　配列.forEach((要素) => 繰り返す処理);</dt>
+      <dd>()内の要素に対して繰り返しの処理ができる。要素は配列の中身。for-of文と置き換えが可能。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showF" v-show="js">
+      <dt>関数宣言 function　function 関数名 (引数) {処理}</dt>
+      <dd>何度も繰り返し出てくるコードは、関数宣言で処理をまとめる。この関数を他のところで使うことを「関数呼び出し」という。引数ありの場合は()内に引数を受け取る変数名を書く。引数なしの場合は何も書かない。ここでの引数のことを「仮引数」という。関数呼び出しの際に設定する引数のことを「実引数」という。<br>
+      また、関数内で宣言された定数や変数には「ローカルスコープ」と呼ばれるスコープが適用されており、その関数の外では使えない。<br>
+      戻り値を指定したいときは、{}内の最後に「return 戻り値;」と表記する。<br>
+      「関数式」と呼ばれる表記法もある。<br>
+      例えば・・・<br>
+      const 関数名 = function (引数) {<br>
+      　処理<br>
+      };<br>
+      この場合の関数は「無名関数」という。<br>
+      上記に合わせて「アロー関数」と呼ばれる表記法もある。<br>
+      例えば・・・<br>
+      const 関数名 = (引数) => {<br>
+      　処理<br>
+      }<br>
+      {}内が式のときは省略する。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showG" v-show="js">
+      <dt>getElementByIdメソッド　document.getElementById('id名')</dt>
+      <dd>要素のid名から要素を取得する。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showG" v-show="js">
+      <dt>getElementsByClassNameメソッド　document.getElementsByClassName('クラス名');</dt>
+      <dd>取得したい要素のクラス名を指定し、HTMLから取得することができる。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「HTML Collection」オブジェクトとして表記される)</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showG" v-show="js">
+      <dt>getElementsByNameメソッド　document.getElementsByName('name名');</dt>
+      <dd>取得したい要素のname名を指定し、HTMLから取得することができる。nameのある要素のため、取得できる要素は主にラジオボタンやチェックボックスなどである。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「NodeList」オブジェクトとして表記される)</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showG" v-show="js">
+      <dt>getElementsByTagNameメソッド　document.getElementsByTagName('タグ名');</dt>
+      <dd>タグ名=要素の名前を指定し、HTMLから取得することができる。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「HTML Collection」オブジェクトとして表記される)</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showH" v-show="css">
+      <dt>height　height: 数値;</dt>
+      <dd>要素の縦幅(高さ)を指定できる。読み方はハイト。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+
+    <dl v-if="showI" v-show="js">
+      <dt>if文　if (条件式) {条件を満たしたときに実行されるコード};</dt>
+      <dd>もし条件式に当てはまれば、{}内のコードを実行する。後に「else」をつけることで、そうでなければ、のコードを付け足すことができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showI" v-show="html">
+      <dt>img要素　&lt;img src='使いたい画像のURLorパス'&gt;</dt>
+      <dd>指定した画像を表示させる。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showI" v-show="css">
+      <dt>@import　@import url('URL');</dt>
+      <dd>()内のURLからインポートしてくることができる。主にGoogleフォントなどの取得に使う。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+    <dl v-if="showI" v-show="js">
+      <dt>indexOfメソッド　配列.indexOf(照合する値)</dt>
+      <dd>spliceメソッドと組み合わせることで、指定した配列の特定の要素を削除する。照合する値が配列内になかったときは戻り値が-1、あったときは1となる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showI" v-show="html">
+      <dt>input要素　&lt;input&gt;</dt>
+      <dd>テキストによる入力、ラジオボタンによる選択など、ユーザーからの入力値を受け取ることができる要素。テキストの場合は「input type="text"」、ラジオボタンの場合は「input type="radio"」など、typeの値によってinput要素の種類が分かれる。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showI" v-show="js">
+      <dt>insertBeforeメソッド　親要素.insertBefore(追加したい要素, 参照する要素);</dt>
+      <dd>指定した親要素内において、参照する要素の1つ前に指定した要素を追加することができる。1つ後ろに追加したいときは「参照する要素.nextElementSibling」とする(「Element」の省略可)<br>
+      また、要素の移動をさせることもできる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showL" v-show="html">
+      <dt>label要素　&lt;label&gt;テキスト→(その下に)ドロップダウンメニュー、ラジオボタンなど&lt;/label&gt;</dt>
+      <dd>ドロップダウンメニューやラジオボタンなどを選択する際に、説明を付け加えるときに使う。idのついたinput要素と使い、「label for="id名"」とすると、そのinput要素に対するテキストをつけることができる。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showL" v-show="js">
+      <dt>lastElementChildプロパティ　要素.lastElementChild;</dt>
+      <dd>指定した要素の最後の子要素を、HTMLから取得することができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showL" v-show="js">
+      <dt>lengthメソッド　配列.length</dt>
+      <dd>配列の長さ=要素の数。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showL" v-show="js">
+      <dt>let　let 変数名 = 値orテキスト</dt>
+      <dd>変数に値orテキストを指定することができる。一度値orテキストを入れても、変更ができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showL" v-show="html">
+      <dt>li要素　&lt;li&gt;テキスト&lt;/li&gt;</dt>
+      <dd>リストの一つ一つの要素。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+
+    <dl v-if="showM" v-show="js">
+      <dt>mapメソッド　配列.map((el) => 追加で表示したい内容)</dt>
+      <dd>配列内の要素をelとし、elにテキストなどを追加して書き換えることができる。ラムダ式メソッドの一部。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showN" v-show="js">
+      <dt>nextElementSiblingプロパティ　要素.nextElementSibling;</dt>
+      <dd>指定した要素の次の兄弟要素を、HTMLから取得することができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showO" v-show="html">
+      <dt>option要素　&lt;option&gt;選択肢&lt;/option&gt;</dt>
+      <dd>ドロップダウンメニューにおいて、それぞれの選択肢を作ることができる。select要素の下で使う。「selected disabled」とつけることで、選択できないようにすることもできる。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+
+    <dl v-if="showP" v-show="html">
+      <dt>p要素　&lt;p&gt;テキスト&lt;/p&gt;</dt>
+      <dd>表示したいテキストの内容を指定できる。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showP" v-show="js">
+      <dt>parentElementプロパティ　要素.parentElement;</dt>
+      <dd>指定した要素の親要素を、HTMLから取得することができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showP" v-show="js">
+      <dt>previousElementSiblingプロパティ　要素.previousElementSibling;</dt>
+      <dd>指定した要素の1つ前の兄弟要素を、HTMLから取得することができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showP" v-show="js">
+      <dt>promptメソッド　window.prompt('テキスト');</dt>
+      <dd>画面上部から入力ダイアログを表示する。テキストに書いた内容がダイアログ内に表示される。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showP" v-show="js">
+      <dt>pushメソッド　配列.push();</dt>
+      <dd>配列に対して、末尾に()内の値を追加できる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showP" v-show="js">
+      <dt>popメソッド　配列.pop();</dt>
+      <dd>配列に対して、末尾の要素を削除できる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showQ" v-show="js">
+      <dt>querySelectorメソッド　document.querySelector('要素名');</dt>
+      <dd>指定した要素をHTMLから取ってくる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showQ" v-show="js">
+      <dt>querySelectorAllメソッド　document.querySelectorAll('要素名');</dt>
+      <dd>指定した要素全てをHTMLから取ってくる。複数取得するため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「NodeList」オブジェクトとして表記される)</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showR" v-show="js">
+      <dt>removeメソッド　削除したい要素.remove();</dt>
+      <dd>指定した要素を削除することができる。戻り値は「undefined」。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showR" v-show="js">
+      <dt>removeChildメソッド　親要素.replaceChild(削除したい子要素);</dt>
+      <dd>指定した親要素内において、子要素を削除することができる。ここで削除された要素は戻り値となるため、後々使う必要がある場合は、定数などで受け取っておく必要がある。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showR" v-show="js">
+      <dt>replaceChildメソッド　親要素.replaceChild(新しい要素, 古い要素);</dt>
+      <dd>古い要素を新しい要素に置き換えることができる。古い要素は、指定した親要素の子要素でなければならない。ここで置き換えられた古い要素は戻り値となるため、後々使う必要がある場合は、定数などで受け取っておく必要がある。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showR" v-show="js">
+      <dt>return</dt>
+      <dd>関数の処理を抜け出したいときに使う。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showS" v-show="html">
+      <dt>script要素　&lt;script src = "使いたいjsのリンク"&gt;&lt;/script&gt;</dt>
+      <dd>JavaScriptの指定ができる。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showS" v-show="html">
+      <dt>select要素　&lt;select&gt;option要素&lt;/select&gt;</dt>
+      <dd>ドロップダウンメニューを作成したいときに使う。option要素にドロップダウンメニュー内のそれぞれの選択肢を入れる。/dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showS" v-show="js">
+      <dt>shiftメソッド　配列.shift();</dt>
+      <dd>配列に対して、先頭の要素を削除できる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showS" v-show="js">
+      <dt>spliceメソッド　配列.splice(インデックス, 0or1, 追加する要素)</dt>
+      <dd>()内に0を指定した場合、指定した配列内のインデックス(何番目か)の後に要素を追加できる。()内に1を追加した場合、指定した配列のインデックス(何番目か)の要素を削除できる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showT" v-show="html">
+      <dt>table要素　&lt;table&gt;tr要素、th要素、td要素&lt;/table&gt;</dt>
+      <dd>table要素を親要素として、子要素にtr, th, td要素を使う。テーブルを作成するときに使う要素。<br>
+      例えば・・・<br>
+      &lt;table&gt;<br>
+      　&lt;tr&gt;<br>
+      　　&lt;th&gt;テーブルのタイトル1&lt;/th&gt;&lt;th&gt;テーブルのタイトル2&lt;/th&gt;&lt;th&gt;テーブルのタイトル3&lt;/th&gt;<br>
+      　&lt;/tr&gt;<br>
+      　&lt;tr&gt;<br>
+      　　&lt;td&gt;タイトル1の列の値&lt;/td&gt;&lt;td&gt;タイトル2の列の値&lt;/td&gt;&lt;td&gt;タイトル3の列の値&lt;/td&gt;<br>
+      　&lt;/tr&gt;<br>
+      　&lt;tr&gt;<br>
+      　　&lt;td&gt;タイトル1の列の値&lt;/td&gt;&lt;td&gt;タイトル2の列の値&lt;/td&gt;&lt;td&gt;タイトル3の列の値&lt;/td&gt;<br>
+      　&lt;/tr&gt;<br>
+      &lt;/table&gt;</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showT" v-show="js">
+      <dt>textContentメソッド　document.要素.textContent = 'テキスト';</dt>
+      <dd>指定した要素のテキスト内容を書き換えることができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showT" v-show="html">
+      <dt>td要素　&lt;td&gt;テーブルのセルの値&lt;/td&gt;</dt>
+      <dd>テーブル内にセルを作成できる。td要素1つにつきセル1つのため、作りたいセルの数に応じてtd要素も必要になる。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showT" v-show="html">
+      <dt>th要素　&lt;th&gt;テーブルの列ごとのタイトル&lt;/th&gt;</dt>
+      <dd>テーブルの列ごとのタイトルを作成できる。基本的にはtd要素よりも先に作る。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showT" v-show="html">
+      <dt>title要素　&lt;title&gt;テキスト&lt;/title&gt;</dt>
+      <dd>ページのタイトル部分を指定することができる。何も指定しなかった場合、ファイル名になる。主にhead要素内で表記する。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showT" v-show="html">
+      <dt>tr要素　&lt;tr&gt;th要素、td要素&lt;/tr&gt;</dt>
+      <dd>テーブル内の行1つ分を作成できる。詳しいテーブルの作り方はtable要素を参照。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    
+    <dl v-if="showU" v-show="html">
+      <dt>ul要素　&lt;ul&gt;li要素&lt;/ul&gt;</dt>
+      <dd>リストを作成する際の親要素。一つ一つのリストではなく、リスト全体を範囲とする要素。</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
+    <dl v-if="showU" v-show="js">
+      <dt>unshiftメソッド　配列.unshift();</dt>
+      <dd>配列に対して、先頭に()内の値を追加できる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+    <dl v-if="showU" v-show="js">
+      <dt>'use strict'</dt>
+      <dd>JavaScriptファイルの最初に記述する。ラベルのタイプミスを防ぐことができる。</dd>
+      <div class="jsTag">JavaScript</div>
+    </dl>
+
+    <dl v-if="showW" v-show="css">
+      <dt>width　width: 数値;</dt>
+      <dd>要素の横幅を指定できる。</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
+
+  </div>
+
+  <script src="https://unpkg.com/petite-vue"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
