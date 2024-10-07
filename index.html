@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>コード辞書</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="select">
     <label>コードの頭文字
@@ -40,9 +42,12 @@
       </select>
     </label>
     <label class="lang">言語の種類
-      <input @change="lang" v-model="langHtml" type="radio" name="lang" value="html" id="radio1"><label for="radio1" class="langLabel">HTML</label>
-      <input @change="lang" v-model="langCss" type="radio" name="lang" value="css" id="radio2"><label for="radio2" class="langLabel">CSS</label>
-      <input @change="lang" v-model="langJs" type="radio" name="lang" value="js" id="radio3"><label for="radio3" class="langLabel">JavaScript</label>
+      <input @change="lang" v-model="langHtml" type="radio" name="lang" value="html" id="radio1"><label for="radio1"
+        class="langLabel">HTML</label>
+      <input @change="lang" v-model="langCss" type="radio" name="lang" value="css" id="radio2"><label for="radio2"
+        class="langLabel">CSS</label>
+      <input @change="lang" v-model="langJs" type="radio" name="lang" value="js" id="radio3"><label for="radio3"
+        class="langLabel">JavaScript</label>
     </label>
   </div>
 
@@ -60,7 +65,7 @@
     <dl v-if="showA" v-show="js">
       <dt>appendChildメソッド　親要素.appendChild(作成した要素);</dt>
       <dd>親要素の下に作成した要素を追加できる。親要素にbodyを指定したいときは「document.body」とする。<br>
-      親要素内において、()内の要素がHTMLにある場合、親要素の1番最後に移動させることもできる。</dd>
+        親要素内において、()内の要素がHTMLにある場合、親要素の1番最後に移動させることもできる。</dd>
       <div class="jsTag">JavaScript</div>
     </dl>
 
@@ -130,6 +135,11 @@
       <dd>定数に指定した要素を作成できる。</dd>
       <div class="jsTag">JavaScript</div>
     </dl>
+    <dl v-if="showC" v-show="css">
+      <dt>cursor: pointer;</dt>
+      <dd>カーソルが要素の上に来たときに指のマークにできる（pointer以外にも、画像を指定することもできる）</dd>
+      <div class="cssTag">CSS</div>
+    </dl>
 
     <dl v-if="showD" v-show="html">
       <dt>dd要素　&lt;dd&gt;テキスト&lt;/dd&gt;</dt>
@@ -171,13 +181,13 @@
     <dl v-if="showF" v-show="js">
       <dt>for文　for (初期化式; 繰り返し条件式; 更新式) {繰り返す処理};</dt>
       <dd>初期化式から始まり、繰り返す条件式に当てはまるまで、更新式を繰り返し、{}内の処理を行う。<br>
-      例えば・・・<br>
-      for (let i = 0; i < 5; i += 1) {<br>
-      　　console.log('Hello World!!');<br>
-      }<br>
-      とした場合、変数iが0から始まり、iが5より下(4)まで、iに1を追加していく。つまり「0, 1, 2, 3, 4」の5回、コンソールにHello World!!を表示させる。<br>
-      また、入れ子(ネスト)も可能である。入れ子(ネスト)→for文の中にfor文を書くこと。<br>
-      for文の中にif文を入れることも可能。</dd>
+        例えば・・・<br>
+        for (let i = 0; i < 5; i +=1) {<br>
+          　　console.log('Hello World!!');<br>
+          }<br>
+          とした場合、変数iが0から始まり、iが5より下(4)まで、iに1を追加していく。つまり「0, 1, 2, 3, 4」の5回、コンソールにHello World!!を表示させる。<br>
+          また、入れ子(ネスト)も可能である。入れ子(ネスト)→for文の中にfor文を書くこと。<br>
+          for文の中にif文を入れることも可能。</dd>
       <div class="jsTag">JavaScript</div>
     </dl>
     <dl v-if="showF" v-show="js">
@@ -197,21 +207,22 @@
     </dl>
     <dl v-if="showF" v-show="js">
       <dt>関数宣言 function　function 関数名 (引数) {処理}</dt>
-      <dd>何度も繰り返し出てくるコードは、関数宣言で処理をまとめる。この関数を他のところで使うことを「関数呼び出し」という。引数ありの場合は()内に引数を受け取る変数名を書く。引数なしの場合は何も書かない。ここでの引数のことを「仮引数」という。関数呼び出しの際に設定する引数のことを「実引数」という。<br>
-      また、関数内で宣言された定数や変数には「ローカルスコープ」と呼ばれるスコープが適用されており、その関数の外では使えない。<br>
-      戻り値を指定したいときは、{}内の最後に「return 戻り値;」と表記する。<br>
-      「関数式」と呼ばれる表記法もある。<br>
-      例えば・・・<br>
-      const 関数名 = function (引数) {<br>
-      　処理<br>
-      };<br>
-      この場合の関数は「無名関数」という。<br>
-      上記に合わせて「アロー関数」と呼ばれる表記法もある。<br>
-      例えば・・・<br>
-      const 関数名 = (引数) => {<br>
-      　処理<br>
-      }<br>
-      {}内が式のときは省略する。</dd>
+      <dd>
+        何度も繰り返し出てくるコードは、関数宣言で処理をまとめる。この関数を他のところで使うことを「関数呼び出し」という。引数ありの場合は()内に引数を受け取る変数名を書く。引数なしの場合は何も書かない。ここでの引数のことを「仮引数」という。関数呼び出しの際に設定する引数のことを「実引数」という。<br>
+        また、関数内で宣言された定数や変数には「ローカルスコープ」と呼ばれるスコープが適用されており、その関数の外では使えない。<br>
+        戻り値を指定したいときは、{}内の最後に「return 戻り値;」と表記する。<br>
+        「関数式」と呼ばれる表記法もある。<br>
+        例えば・・・<br>
+        const 関数名 = function (引数) {<br>
+        　処理<br>
+        };<br>
+        この場合の関数は「無名関数」という。<br>
+        上記に合わせて「アロー関数」と呼ばれる表記法もある。<br>
+        例えば・・・<br>
+        const 関数名 = (引数) => {<br>
+        　処理<br>
+        }<br>
+        {}内が式のときは省略する。</dd>
       <div class="jsTag">JavaScript</div>
     </dl>
 
@@ -222,17 +233,23 @@
     </dl>
     <dl v-if="showG" v-show="js">
       <dt>getElementsByClassNameメソッド　document.getElementsByClassName('クラス名');</dt>
-      <dd>取得したい要素のクラス名を指定し、HTMLから取得することができる。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「HTML Collection」オブジェクトとして表記される)</dd>
+      <dd>
+        取得したい要素のクラス名を指定し、HTMLから取得することができる。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「HTML
+        Collection」オブジェクトとして表記される)</dd>
       <div class="jsTag">JavaScript</div>
     </dl>
     <dl v-if="showG" v-show="js">
       <dt>getElementsByNameメソッド　document.getElementsByName('name名');</dt>
-      <dd>取得したい要素のname名を指定し、HTMLから取得することができる。nameのある要素のため、取得できる要素は主にラジオボタンやチェックボックスなどである。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「NodeList」オブジェクトとして表記される)</dd>
+      <dd>
+        取得したい要素のname名を指定し、HTMLから取得することができる。nameのある要素のため、取得できる要素は主にラジオボタンやチェックボックスなどである。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「NodeList」オブジェクトとして表記される)
+      </dd>
       <div class="jsTag">JavaScript</div>
     </dl>
     <dl v-if="showG" v-show="js">
       <dt>getElementsByTagNameメソッド　document.getElementsByTagName('タグ名');</dt>
-      <dd>タグ名=要素の名前を指定し、HTMLから取得することができる。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「HTML Collection」オブジェクトとして表記される)</dd>
+      <dd>
+        タグ名=要素の名前を指定し、HTMLから取得することができる。複数取得するため「Elements」と複数形で表記されている。そのため、JavaScript内で取得したものを扱う場合は、配列として考える必要がある(コンソールなどには「HTML
+        Collection」オブジェクトとして表記される)</dd>
       <div class="jsTag">JavaScript</div>
     </dl>
 
@@ -264,19 +281,21 @@
     </dl>
     <dl v-if="showI" v-show="html">
       <dt>input要素　&lt;input&gt;</dt>
-      <dd>テキストによる入力、ラジオボタンによる選択など、ユーザーからの入力値を受け取ることができる要素。テキストの場合は「input type="text"」、ラジオボタンの場合は「input type="radio"」など、typeの値によってinput要素の種類が分かれる。</dd>
+      <dd>テキストによる入力、ラジオボタンによる選択など、ユーザーからの入力値を受け取ることができる要素。テキストの場合は「input type="text"」、ラジオボタンの場合は「input
+        type="radio"」など、typeの値によってinput要素の種類が分かれる。</dd>
       <div class="htmlTag">HTML</div>
     </dl>
     <dl v-if="showI" v-show="js">
       <dt>insertBeforeメソッド　親要素.insertBefore(追加したい要素, 参照する要素);</dt>
       <dd>指定した親要素内において、参照する要素の1つ前に指定した要素を追加することができる。1つ後ろに追加したいときは「参照する要素.nextElementSibling」とする(「Element」の省略可)<br>
-      また、要素の移動をさせることもできる。</dd>
+        また、要素の移動をさせることもできる。</dd>
       <div class="jsTag">JavaScript</div>
     </dl>
 
     <dl v-if="showL" v-show="html">
       <dt>label要素　&lt;label&gt;テキスト→(その下に)ドロップダウンメニュー、ラジオボタンなど&lt;/label&gt;</dt>
-      <dd>ドロップダウンメニューやラジオボタンなどを選択する際に、説明を付け加えるときに使う。idのついたinput要素と使い、「label for="id名"」とすると、そのinput要素に対するテキストをつけることができる。</dd>
+      <dd>ドロップダウンメニューやラジオボタンなどを選択する際に、説明を付け加えるときに使う。idのついたinput要素と使い、「label for="id名"」とすると、そのinput要素に対するテキストをつけることができる。
+      </dd>
       <div class="htmlTag">HTML</div>
     </dl>
     <dl v-if="showL" v-show="js">
@@ -389,7 +408,7 @@
     <dl v-if="showS" v-show="html">
       <dt>select要素　&lt;select&gt;option要素&lt;/select&gt;</dt>
       <dd>ドロップダウンメニューを作成したいときに使う。option要素にドロップダウンメニュー内のそれぞれの選択肢を入れる。/dd>
-      <div class="htmlTag">HTML</div>
+        <div class="htmlTag">HTML</div>
     </dl>
     <dl v-if="showS" v-show="js">
       <dt>shiftメソッド　配列.shift();</dt>
@@ -401,22 +420,27 @@
       <dd>()内に0を指定した場合、指定した配列内のインデックス(何番目か)の後に要素を追加できる。()内に1を追加した場合、指定した配列のインデックス(何番目か)の要素を削除できる。</dd>
       <div class="jsTag">JavaScript</div>
     </dl>
+    <dl v-if="showS" v-show="html">
+      <dt>summary要素　&lt;summary&gt;見出し&lt;/summary&gt;</dt>
+      <dd>「▶○○」のように見出しが表示され、クリックすると「▼○○」となり、詳細が下に表示されるようになる。summary要素の兄弟要素は見えなくなる（クリックすると見えるようになる）</dd>
+      <div class="htmlTag">HTML</div>
+    </dl>
 
     <dl v-if="showT" v-show="html">
       <dt>table要素　&lt;table&gt;tr要素、th要素、td要素&lt;/table&gt;</dt>
       <dd>table要素を親要素として、子要素にtr, th, td要素を使う。テーブルを作成するときに使う要素。<br>
-      例えば・・・<br>
-      &lt;table&gt;<br>
-      　&lt;tr&gt;<br>
-      　　&lt;th&gt;テーブルのタイトル1&lt;/th&gt;&lt;th&gt;テーブルのタイトル2&lt;/th&gt;&lt;th&gt;テーブルのタイトル3&lt;/th&gt;<br>
-      　&lt;/tr&gt;<br>
-      　&lt;tr&gt;<br>
-      　　&lt;td&gt;タイトル1の列の値&lt;/td&gt;&lt;td&gt;タイトル2の列の値&lt;/td&gt;&lt;td&gt;タイトル3の列の値&lt;/td&gt;<br>
-      　&lt;/tr&gt;<br>
-      　&lt;tr&gt;<br>
-      　　&lt;td&gt;タイトル1の列の値&lt;/td&gt;&lt;td&gt;タイトル2の列の値&lt;/td&gt;&lt;td&gt;タイトル3の列の値&lt;/td&gt;<br>
-      　&lt;/tr&gt;<br>
-      &lt;/table&gt;</dd>
+        例えば・・・<br>
+        &lt;table&gt;<br>
+        　&lt;tr&gt;<br>
+        　　&lt;th&gt;テーブルのタイトル1&lt;/th&gt;&lt;th&gt;テーブルのタイトル2&lt;/th&gt;&lt;th&gt;テーブルのタイトル3&lt;/th&gt;<br>
+        　&lt;/tr&gt;<br>
+        　&lt;tr&gt;<br>
+        　　&lt;td&gt;タイトル1の列の値&lt;/td&gt;&lt;td&gt;タイトル2の列の値&lt;/td&gt;&lt;td&gt;タイトル3の列の値&lt;/td&gt;<br>
+        　&lt;/tr&gt;<br>
+        　&lt;tr&gt;<br>
+        　　&lt;td&gt;タイトル1の列の値&lt;/td&gt;&lt;td&gt;タイトル2の列の値&lt;/td&gt;&lt;td&gt;タイトル3の列の値&lt;/td&gt;<br>
+        　&lt;/tr&gt;<br>
+        &lt;/table&gt;</dd>
       <div class="htmlTag">HTML</div>
     </dl>
     <dl v-if="showT" v-show="js">
@@ -444,7 +468,7 @@
       <dd>テーブル内の行1つ分を作成できる。詳しいテーブルの作り方はtable要素を参照。</dd>
       <div class="htmlTag">HTML</div>
     </dl>
-    
+
     <dl v-if="showU" v-show="html">
       <dt>ul要素　&lt;ul&gt;li要素&lt;/ul&gt;</dt>
       <dd>リストを作成する際の親要素。一つ一つのリストではなく、リスト全体を範囲とする要素。</dd>
